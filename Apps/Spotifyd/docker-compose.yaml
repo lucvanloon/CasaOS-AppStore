@@ -1,0 +1,42 @@
+name: impressive_rachid
+services:
+  spotifyd:
+    cpu_shares: 90
+    command: []
+    container_name: spotify
+    deploy:
+      resources:
+        limits:
+          memory: 7812M
+    devices:
+      - /dev/snd:/dev/snd
+    group_add:
+      - "29"
+    image: hvalev/spotifyd-alsa-dbus
+    restart: always
+    volumes:
+      - type: bind
+        source: /usr/share/alsa
+        target: /usr/share/alsa
+      - type: bind
+        source: /etc/spotifyd/spotifyd.conf
+        target: /etc/spotifyd.conf
+      - type: bind
+        source: /etc/asound.conf
+        target: /etc/asound.conf
+    ports: []
+    cap_add: []
+    environment: []
+    network_mode: host
+    privileged: false
+x-casaos:
+  author: self
+  category: self
+  hostname: ""
+  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Spotifyd/icon.png
+  index: /
+  port_map: "4629"
+  scheme: http
+  store_app_id: impressive_rachid
+  title:
+    custom: Spotifyd
